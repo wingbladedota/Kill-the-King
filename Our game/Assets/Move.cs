@@ -11,6 +11,7 @@ private bool isTalking;
 public float moveSpeed;
     public GameObject continueButton;
     public GameObject textBox;
+    public DialogueTrigger dialoguetrigger;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +27,10 @@ void Update()
         if (Input.GetButtonDown("Jump"))
         {
             isTalking = false;
+        }
+        if (Input.GetButtonDown("Fire1"))
+        {
+            //dialoguetrigger.dialogue.DisplayNextSentence();
         }
         if (!isTalking)
         {
@@ -62,7 +67,7 @@ void Update()
         {
             isTalking = true; continueButton.SetActive(true);
             textBox.SetActive(true);
-
+            dialoguetrigger.TriggerDialogue();
             Debug.Log("collision");        }
     }
     private void OnCollisionExit(Collision collision)
