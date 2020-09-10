@@ -7,11 +7,13 @@ public class Move : MonoBehaviour
    private Animator animator;
 private SpriteRenderer spriterenderer;
 private bool isWalking;
-private bool isTalking;
+public bool isTalking;
 public float moveSpeed;
-    public GameObject continueButton;
     public GameObject textBox;
     public DialogueTrigger dialoguetrigger;
+    public GameObject nameText;
+    public GameObject dialogueText;
+    public DialogueManager dialoguemanager;
 
     // Start is called before the first frame update
     void Start()
@@ -19,23 +21,31 @@ public float moveSpeed;
     animator = GetComponent<Animator>();
     spriterenderer = GetComponent<SpriteRenderer>();
     moveSpeed = 10f;
-}
+        textBox.SetActive(false);
 
-// Update is called once per frame
-void Update()
+    }
+
+    // Update is called once per frame
+    void Update()
 {
         if (Input.GetButtonDown("Jump"))
         {
             isTalking = false;
+            textBox.SetActive(false);
+            nameText.SetActive(false);
+            dialogueText.SetActive(false);
         }
         if (Input.GetButtonDown("Fire1"))
         {
             //dialoguetrigger.dialogue.DisplayNextSentence();
         }
+        if (isTalking && Input.GetButtonDown("Fire1"))
+        {
+            dialoguemanager.DisplayNextSentence();
+        }
         if (!isTalking)
         {
-            continueButton.SetActive(false);
-            textBox.SetActive(false);
+
 
             Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
             transform.position += movement * Time.deltaTime * moveSpeed;
@@ -63,22 +73,15 @@ void Update()
 }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.name == "NPC")
+        if (collision.collider.tag == "NPC")
         {
-            isTalking = true; continueButton.SetActive(true);
-            textBox.SetActive(true);
-            dialoguetrigger.TriggerDialogue();
-            Debug.Log("collision");        }
-    }
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.collider.name == "NPC")
-        {
-            Debug.Log("collisionleave");
+            textBox.SetActive(true); 
+            nameText.SetActive(true);
+            dialogueText.SetActive(true);
         }
-
     }
 
+    
 }
 
 
