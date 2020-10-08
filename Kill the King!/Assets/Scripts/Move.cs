@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Security;
 using System.Threading;
@@ -16,6 +15,9 @@ public class Move : MonoBehaviour
     public bool isGrounded;
     public float moveSpeed ;
     public float jumpHeight ;
+    public bool facingRight;
+    public GameObject AttackPos;
+    public float attackPosX;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,12 +38,11 @@ void Update()
 
         if (movement.x < 0)
         {
-            spriterenderer.flipX = true;
+            transform.localScale = new Vector3(-1, 1, 1);
         }
         else if (movement.x>0)
         {
-            spriterenderer.flipX = false;
-
+             transform.localScale = new Vector3(1, 1, 1);
         }
 
         if (Input.GetButton("Horizontal"))
@@ -66,7 +67,6 @@ void Update()
         else
         {
             //animator.SetBool("takeOffLand", false);
-
         }
     }
 
