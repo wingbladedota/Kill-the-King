@@ -33,6 +33,7 @@ public class PlayerAttack : MonoBehaviour
                 for (int i = 0; i < enemiesToDamage.Length; i++)
                 {
                     enemiesToDamage[i].GetComponent<EnemyMovement>().health -= damage;
+                    enemiesToDamage[i].GetComponent<KingMovement>().health -= damage;
                 }
             } 
         }
