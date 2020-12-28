@@ -32,7 +32,7 @@ void Update()
         {
             takeOffLand = false;
         }
-        Jump();
+        //Jump();
         Vector3 movement = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
         transform.position += movement * Time.deltaTime * moveSpeed;
 
@@ -70,7 +70,7 @@ void Update()
         }
     }
 
-    void Jump()
+ /*   void Jump()
     {
         if (Input.GetButtonDown("Jump") && isGrounded==true)
         {
@@ -79,5 +79,5 @@ void Update()
             isJumping = true;
             animator.SetBool("isJumping", true);
         }
-    }
+    }*/
 }
