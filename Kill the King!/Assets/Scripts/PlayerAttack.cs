@@ -31,7 +31,7 @@ public class PlayerAttack : MonoBehaviour
         if (timeBtwAttack <= 0)
         {
             //the general action button
-            if (Input.GetKey(KeyCode.Mouse0))
+            if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 //if there is one
                 if (itemQueue.itemQueue.Count > 0){
@@ -49,18 +49,18 @@ public class PlayerAttack : MonoBehaviour
                             enemiesToDamage[i].GetComponent<KingMovement>().health -= damage;
                         }
                         itemQueue.itemQueue.RemoveAt(0);
-
+                        return;
                     }
 
                     //jump
-                    if (GetComponent<ItemQueue>().itemQueue[0] == ItemQueue.Actions.Jump && move.isGrounded == true)
+                    if (GetComponent<ItemQueue>().itemQueue[0] == ItemQueue.Actions.Jump && move.isGrounded == true && !move.isJumping)
                     {
-                        //takeOffLand = true;
+                        move.takeOffLand = true;
                         gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, move.jumpHeight), ForceMode2D.Impulse);
                         move.isJumping = true;
                         animator.SetBool("isJumping", true);
                         itemQueue.itemQueue.RemoveAt(0);
-
+                        return;
                     }
                 }
             } 

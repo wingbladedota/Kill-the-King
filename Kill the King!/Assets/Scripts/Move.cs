@@ -70,7 +70,7 @@ void Update()
         }
     }
 
- /*   void Jump()
+   /* void Jump()
     {
         if (Input.GetButtonDown("Jump") && isGrounded==true)
         {
