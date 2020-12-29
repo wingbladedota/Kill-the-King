@@ -18,6 +18,8 @@ public class Move : MonoBehaviour
     public bool facingRight;
     public GameObject AttackPos;
     public float attackPosX;
+
+    Joystick joystick;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +35,7 @@ void Update()
             takeOffLand = false;
         }
         //Jump();
+       
         Vector3 movement = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
         transform.position += movement * Time.deltaTime * moveSpeed;
 

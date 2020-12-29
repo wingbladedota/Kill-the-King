@@ -28,13 +28,20 @@ public class PlayerAttack : MonoBehaviour
     void Update()
     {
 
+        UseAbility();
+        HandleInput();
+    }
+
+   public void UseAbility()
+    {
         if (timeBtwAttack <= 0)
         {
             //the general action button
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 //if there is one
-                if (itemQueue.itemQueue.Count > 0){
+                if (itemQueue.itemQueue.Count > 0)
+                {
 
                     //attack
                     if (GetComponent<ItemQueue>().itemQueue[0] == ItemQueue.Actions.Attack)
@@ -63,13 +70,12 @@ public class PlayerAttack : MonoBehaviour
                         return;
                     }
                 }
-            } 
+            }
         }
         else
         {
             timeBtwAttack -= Time.deltaTime;
         }
-        HandleInput();
     }
     void HandleInput()
     {
