@@ -8,7 +8,6 @@ public class PlayerAttack : MonoBehaviour
     private float timeBtwAttack;
     private Animator animator;
     private SpriteRenderer spriterenderer;
-    private ItemQueue itemQueue;
     private Move move;
     public float startTimeBtwAttack;
 
@@ -17,12 +16,10 @@ public class PlayerAttack : MonoBehaviour
     public float attackRange;
     public float damage;
 
-
     void Start()
     {
         animator = GetComponent<Animator>();
         spriterenderer = GetComponent<SpriteRenderer>();
-        itemQueue = GetComponent<ItemQueue>();
         move = GetComponent<Move>();
     }
     void Update()
@@ -40,11 +37,11 @@ public class PlayerAttack : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 //if there is one
-                if (itemQueue.itemQueue.Count > 0)
+                if (GlobalControl.Instance.itemQueue.Count > 0)
                 {
 
                     //attack
-                    if (GetComponent<ItemQueue>().itemQueue[0] == ItemQueue.Actions.Attack)
+                    if (GlobalControl.Instance.itemQueue[0] == GlobalControl.Actions.Attack)
                     {
                         Debug.Log("attack used!");
                         animator.SetTrigger("playerAttack");
@@ -55,18 +52,18 @@ public class PlayerAttack : MonoBehaviour
                             enemiesToDamage[i].GetComponent<EnemyMovement>().health -= damage;
                             enemiesToDamage[i].GetComponent<KingMovement>().health -= damage;
                         }
-                        itemQueue.itemQueue.RemoveAt(0);
+                        GlobalControl.Instance.itemQueue.RemoveAt(0);
                         return;
                     }
 
                     //jump
-                    if (GetComponent<ItemQueue>().itemQueue[0] == ItemQueue.Actions.Jump && move.isGrounded == true && !move.isJumping)
+                    if (GlobalControl.Instance.itemQueue[0] == GlobalControl.Actions.Jump && move.isGrounded == true && !move.isJumping)
                     {
                         move.takeOffLand = true;
                         gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, move.jumpHeight), ForceMode2D.Impulse);
                         move.isJumping = true;
                         animator.SetBool("isJumping", true);
-                        itemQueue.itemQueue.RemoveAt(0);
+                        GlobalControl.Instance.itemQueue.RemoveAt(0);
                         return;
                     }
                 }
@@ -81,22 +78,22 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            GetComponent<ItemQueue>().AddAttack();
+            GlobalControl.Instance.AddAttack();
             Debug.Log("Added attack");
 
-            for (int i = 0; i < GetComponent<ItemQueue>().itemQueue.Count; i++)
+            for (int i = 0; i < GlobalControl.Instance.itemQueue.Count; i++)
             {
 
-                Debug.Log(GetComponent<ItemQueue>().itemQueue[i]);
+                Debug.Log(GlobalControl.Instance.itemQueue[i]);
             }
         }
         if (Input.GetKeyDown(KeyCode.Mouse2))
         {
-            GetComponent<ItemQueue>().AddJump();
+            GlobalControl.Instance.AddJump();
             Debug.Log("Added Jump");
-            for (int i = 0; i < GetComponent<ItemQueue>().itemQueue.Count; i++)
+            for (int i = 0; i < GlobalControl.Instance.itemQueue.Count; i++)
             {
-                Debug.Log(GetComponent<ItemQueue>().itemQueue[i]);
+                Debug.Log(GlobalControl.Instance.itemQueue[i]);
             }
         }
     }
