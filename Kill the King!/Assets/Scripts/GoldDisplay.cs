@@ -7,7 +7,7 @@ public class GoldDisplay : MonoBehaviour
 {
     public TMP_Text GoldCounter;
 
-    private void Update()
+    public void Update()
     {
         GoldCounter.SetText("Gold :  " + GlobalControl.Instance.currentGold.ToString());
     }

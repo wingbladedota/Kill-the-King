@@ -7,14 +7,22 @@ public class GlobalControl : MonoBehaviour
 {
     public static GlobalControl Instance;
 
+    //gold
+    private int attackPrice = 1;
+    private int jumpPrice = 1;
+    public int startingGold = 5;
+    public int currentGold;
     void Awake()
     {
         if (Instance == null)
         {
             DontDestroyOnLoad(gameObject);
             Instance = this;
-            ResetGold();
-        }
+            ResetGold();    
+             attackPrice = 1;
+    jumpPrice = 1;
+     startingGold = 5;
+}
         else if (Instance != this)
         {
             Destroy(gameObject);
@@ -30,7 +38,7 @@ public class GlobalControl : MonoBehaviour
     }
     public List<Actions> itemQueue = new List<Actions>();
 
-    public void Reset()
+    public void ResetActions()
     {
         itemQueue.Clear();
     }
@@ -54,10 +62,7 @@ public class GlobalControl : MonoBehaviour
     }
 
     // gold
-    private int attackPrice=1;
-    private int jumpPrice = 1;
-    private int startingGold=5;
-    public int currentGold;
+
 
     public void ResetGold()
     {
