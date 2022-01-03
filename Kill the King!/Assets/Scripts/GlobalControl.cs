@@ -12,8 +12,8 @@ public class GlobalControl : MonoBehaviour
     //gold
     private int attackPrice = 1;
     private int jumpPrice = 1;
-    public int startingGold;
-    public int currentGold;
+    public static int startingGold;
+    public static int currentGold;
     void Start()
     {
 
@@ -39,17 +39,17 @@ public class GlobalControl : MonoBehaviour
 
     }
 
-    void OnDestroy()
+    /*void OnDestroy()
     {
         PlayerPrefs.SetInt("startingGold", startingGold);
-    }
+    }*/
     //The action logic
 
     public enum Actions
     {
         Jump, Attack
     }
-    public List<Actions> itemQueue = new List<Actions>();
+    public static List<Actions> itemQueue = new List<Actions>();
 
     public void ResetActions()
     {

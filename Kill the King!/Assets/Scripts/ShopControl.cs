@@ -39,6 +39,6 @@ public class ShopControl : MonoBehaviour
 
     public void SetGold(int level)
     {
-        GlobalControl.Instance.startingGold = level;
+        GlobalControl.startingGold = level;
     }
 }

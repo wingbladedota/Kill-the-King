@@ -22,15 +22,6 @@ public class GoldDisplay : MonoBehaviour
     }*/
     public void Update()
     {
-        GameObject go = GameObject.Find("GlobalObject");
-        if (go == null)
-        {
-            Debug.LogError("Failed to find object named GlobalObject");
-            this.enabled = false;
-            return;
-        }
-
-        GlobalControl gc = go.GetComponent<GlobalControl>();
-        GoldCounter.SetText("Gold :  " + gc.currentGold.ToString());
+        GoldCounter.SetText("Gold :  " + GlobalControl.currentGold.ToString());
     }
 }
