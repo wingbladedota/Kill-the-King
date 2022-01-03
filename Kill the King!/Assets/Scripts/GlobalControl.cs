@@ -14,28 +14,35 @@ public class GlobalControl : MonoBehaviour
     private int jumpPrice = 1;
     public int startingGold;
     public int currentGold;
-    void Awake()
+    void Start()
     {
-        Debug.Log("test1");
-        DontDestroyOnLoad(gameObject);
-        Debug.Log("test2");
-        if (Instance == null)
-         {
-             //DontDestroyOnLoad(gameObject);
-             Instance = this;
-             ResetGold();    
- }
-         else if (Instance != this)
-         {
-             Destroy(gameObject);
-         }
 
+      /*  if (Instance == null)
+        {
+            Debug.Log("test1");
+            DontDestroyOnLoad(gameObject);
+            Debug.Log("test2");
+            //DontDestroyOnLoad(gameObject);
+            Instance = this;
+             ResetGold();
+            SceneManager.LoadScene("MainMenu");
+
+        }
+        else if (Instance != this)
+        {
+            Debug.Log("DELETEGC");
+
+            Destroy(gameObject);
+         }
+      */
         ResetGold();
-        SceneManager.LoadScene("MainMenu");
 
     }
 
-
+    void OnDestroy()
+    {
+        PlayerPrefs.SetInt("startingGold", startingGold);
+    }
     //The action logic
 
     public enum Actions
@@ -72,11 +79,12 @@ public class GlobalControl : MonoBehaviour
     {
         startingGold = amount;
         currentGold = startingGold;
-        Debug.Log("SSG");
+        Debug.Log("SetStartingGold, currentgold is "+currentGold);
     }
 
     public void ResetGold()
     {
-        currentGold = startingGold;
+        Debug.Log("reset gold " + PlayerPrefs.GetInt("startingGold"));
+        currentGold = PlayerPrefs.GetInt("startingGold");
     }
 }
