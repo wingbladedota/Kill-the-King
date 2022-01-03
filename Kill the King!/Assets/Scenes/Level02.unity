@@ -393,7 +393,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &475727896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -406,6 +406,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8ed733373a8b5944ae1c1381eee20db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingGold: 0
+  currentGold: 0
+  itemQueue: 
 --- !u!4 &475727897
 Transform:
   m_ObjectHideFlags: 0
@@ -1581,7 +1584,6 @@ MonoBehaviour:
     m_Bits: 512
   attackRange: 0.61
   damage: 2
-  ItemScripts: {fileID: 0}
 --- !u!95 &2125570515
 Animator:
   serializedVersion: 3

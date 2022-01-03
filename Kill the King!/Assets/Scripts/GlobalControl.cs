@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class GlobalControl : MonoBehaviour
 {
@@ -10,23 +12,27 @@ public class GlobalControl : MonoBehaviour
     //gold
     private int attackPrice = 1;
     private int jumpPrice = 1;
-    public int startingGold = 5;
+    public int startingGold;
     public int currentGold;
     void Awake()
     {
+        Debug.Log("test1");
+        DontDestroyOnLoad(gameObject);
+        Debug.Log("test2");
         if (Instance == null)
-        {
-            DontDestroyOnLoad(gameObject);
-            Instance = this;
-            ResetGold();    
-             attackPrice = 1;
-    jumpPrice = 1;
-     startingGold = 5;
-}
-        else if (Instance != this)
-        {
-            Destroy(gameObject);
-        }
+         {
+             //DontDestroyOnLoad(gameObject);
+             Instance = this;
+             ResetGold();    
+ }
+         else if (Instance != this)
+         {
+             Destroy(gameObject);
+         }
+
+        ResetGold();
+        SceneManager.LoadScene("MainMenu");
+
     }
 
 
@@ -62,7 +68,12 @@ public class GlobalControl : MonoBehaviour
     }
 
     // gold
-
+    public void SetStartingGold(int amount)
+    {
+        startingGold = amount;
+        currentGold = startingGold;
+        Debug.Log("SSG");
+    }
 
     public void ResetGold()
     {

@@ -10,9 +10,13 @@ public class LevelSelect : MonoBehaviour
     {
         SceneManager.LoadScene(currentlevel+1);
     }
-    public void SelectLevel(int level) 
+    public void SelectLevel(int level)
     {
         currentlevel = level;
     }
-    
+    public void BackToMain()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
 }

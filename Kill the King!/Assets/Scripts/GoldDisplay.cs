@@ -5,8 +5,21 @@ using UnityEngine;
 
 public class GoldDisplay : MonoBehaviour
 {
-    public TMP_Text GoldCounter;
+   // public static GoldDisplay GoldDisplayInstance;
 
+    public TMP_Text GoldCounter;
+  /*  void Awake()
+    {
+        if (GoldDisplayInstance == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            GoldDisplayInstance = this;
+        }
+        else if (GoldDisplayInstance != this)
+        {
+            Destroy(gameObject);
+        }
+    }*/
     public void Update()
     {
         GoldCounter.SetText("Gold :  " + GlobalControl.Instance.currentGold.ToString());
