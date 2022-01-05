@@ -11,6 +11,7 @@ public class GlobalControl : MonoBehaviour
 
     //gold
     private int attackPrice = 1;
+    private int rangedAttackPrice = 2;
     private int jumpPrice = 1;
     public static int startingGold;
     public static int currentGold;
@@ -47,7 +48,7 @@ public class GlobalControl : MonoBehaviour
 
     public enum Actions
     {
-        Jump, Attack
+        Jump, Attack, RangedAttack
     }
     public static List<Actions> itemQueue = new List<Actions>();
 
@@ -71,6 +72,14 @@ public class GlobalControl : MonoBehaviour
         {
             itemQueue.Add(Actions.Attack);
             currentGold -= attackPrice;
+        }
+    }
+    public void AddRangedAttack()
+    {
+        if (currentGold > 0)
+        {
+            itemQueue.Add(Actions.RangedAttack);
+            currentGold -= rangedAttackPrice;
         }
     }
 
